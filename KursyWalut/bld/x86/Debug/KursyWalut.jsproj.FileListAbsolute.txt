@@ -1,0 +1,16 @@
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bin\x86\Debug\ReverseMap\resources.pri
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bin\x86\Debug\AppxManifest.xml
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bin\x86\Debug\KursyWalut.build.appxrecipe
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\ResourceHandlingTask.state
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\priconfig.xml
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\priconfig.xml.intermediate
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\layout.resfiles
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\layout.resfiles.intermediate
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\resources.resfiles
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\resources.resfiles.intermediate
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\pri.resfiles
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\pri.resfiles.intermediate
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\qualifiers.txt
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\qualifiers.txt.intermediate
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Dominik\Documents\Visual Studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\ProjectArchitectures.txt

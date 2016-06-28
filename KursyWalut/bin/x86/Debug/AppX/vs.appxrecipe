@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DESKTOP-M46TP82</Machine>
+    <WindowsUser>Dominik</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|x86</SolutionConfiguration>
+    <PackageArchitecture>x86</PackageArchitecture>
+    <PackageIdentityName>f9e6797e-7e30-4065-b07c-ab87ffbfa4ec</PackageIdentityName>
+    <IntermediateOutputPath>C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\bld\x86\Debug\</IntermediateOutputPath>
+    <RegisteredManifestChecksum>0E2E02D5A86F59C7F3A494D4619B8E93EE50239940B66995918CAB7CD2158E70</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>f9e6797e-7e30-4065-b07c-ab87ffbfa4ec_1.0.0.0_x86__2rq5ftvzzhyva</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>f9e6797e-7e30-4065-b07c-ab87ffbfa4ec_2rq5ftvzzhyva!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>f9e6797e-7e30-4065-b07c-ab87ffbfa4ec</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Dominik</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\bin\x86\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2016-06-27T15:27:59.514</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\chart.html">
+      <PackagePath>chart.html</PackagePath>
+      <Modified>2016-06-28T08:06:04.498</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\index.html">
+      <PackagePath>index.html</PackagePath>
+      <Modified>2016-06-28T08:29:14.337</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\css\bootstrap.css">
+      <PackagePath>css\bootstrap.css</PackagePath>
+      <Modified>2016-06-07T11:05:13.175</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\css\bootstrap.min.css">
+      <PackagePath>css\bootstrap.min.css</PackagePath>
+      <Modified>2016-06-07T11:06:25.205</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2016-06-01T06:43:42.571</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\css\ui-light.css">
+      <PackagePath>lib\winjs-4.0.1\css\ui-light.css</PackagePath>
+      <Modified>2016-02-28T19:17:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\css\ui-dark.css">
+      <PackagePath>lib\winjs-4.0.1\css\ui-dark.css</PackagePath>
+      <Modified>2016-02-28T19:17:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\LockScreenLogo.scale-200.png">
+      <PackagePath>images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\SplashScreen.scale-200.png">
+      <PackagePath>images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\Square150x150Logo.scale-200.png">
+      <PackagePath>images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\Square44x44Logo.scale-200.png">
+      <PackagePath>images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\StoreLogo.png">
+      <PackagePath>images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\images\Wide310x150Logo.scale-200.png">
+      <PackagePath>images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-09-20T15:22:56.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\canvasjs.min.js">
+      <PackagePath>js\canvasjs.min.js</PackagePath>
+      <Modified>2016-06-27T11:06:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\chart.js">
+      <PackagePath>js\chart.js</PackagePath>
+      <Modified>2016-06-28T08:15:12.905</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\main.js">
+      <PackagePath>js\main.js</PackagePath>
+      <Modified>2016-06-28T11:08:58.911</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\js\base.js">
+      <PackagePath>lib\winjs-4.0.1\js\base.js</PackagePath>
+      <Modified>2016-02-28T19:17:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\js\ui.js">
+      <PackagePath>lib\winjs-4.0.1\js\ui.js</PackagePath>
+      <Modified>2016-02-28T19:17:26.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\bin\x86\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2016-06-27T15:27:59.277</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
