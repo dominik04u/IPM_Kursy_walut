@@ -28,11 +28,11 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\chart.html">
       <PackagePath>chart.html</PackagePath>
-      <Modified>2016-06-28T08:06:04.498</Modified>
+      <Modified>2016-07-21T09:58:02.531</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\index.html">
       <PackagePath>index.html</PackagePath>
-      <Modified>2016-06-28T08:29:14.337</Modified>
+      <Modified>2016-07-21T08:37:00.075</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\css\bootstrap.css">
       <PackagePath>css\bootstrap.css</PackagePath>
@@ -94,11 +94,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\chart.js">
       <PackagePath>js\chart.js</PackagePath>
-      <Modified>2016-06-28T08:15:12.905</Modified>
+      <Modified>2016-07-21T10:03:03.787</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\main.js">
       <PackagePath>js\main.js</PackagePath>
-      <Modified>2016-06-28T11:08:58.911</Modified>
+      <Modified>2016-07-21T08:37:32.774</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\js\base.js">
       <PackagePath>lib\winjs-4.0.1\js\base.js</PackagePath>

@@ -2,7 +2,7 @@
     'use strict';
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
-    var selectDate;
+    var selectDate, selectYear;
     var currencyName = [], converter = [], currencyCode = [], averageRate = [];
     var sourceData = [];
     var applicationData = Windows.Storage.ApplicationData.current;
@@ -13,74 +13,116 @@
 
     WinJS.UI.Pages.define("index.html", {
         ready: function (element, options) {
-            this.getExchangeDates();
+            this.fillYearSelect();
+            //this.getExchangeDates();
         },
 
-    getExchangeDates:function() {
-        loadDate();
-    var url = "http://www.nbp.pl/kursy/xml/dir.txt";
-    var httpClient = new XMLHttpRequest();
-    httpClient.open('GET', url);
-    httpClient.onreadystatechange = function () {
-        var responseMessage = httpClient.responseText;
-        if (httpClient.readyState === 4) {
-            var splittedResponseMessage = responseMessage.split('\n');
-            var splittedDates = [], splittedFileNames = [];
-            var j = 0;
-            for (var i = 0; i < splittedResponseMessage.length; i++) {
-                if (splittedResponseMessage[i].substring(0, 1) == 'a') {
-                    splittedDates[splittedDates.length] = "20" + splittedResponseMessage[i].substring(5, 7) + "-" + splittedResponseMessage[i].substring(7, 9) + "-" + splittedResponseMessage[i].substring(9, 11);
-                    splittedFileNames[splittedFileNames.length] = splittedResponseMessage[i];
-                }
-            }
-            splittedFileNames.reverse();
-            splittedDates.reverse();
-
-            selectDate = document.getElementById("date-select");
-            for (var i = 0; i < splittedDates.length; i++) {
+        fillYearSelect: function () {
+            selectYear = document.getElementById("year-select");
+            var date = new Date();
+            var year = date.getFullYear();
+            for (var i = year; i >= 2002; i--) {
                 var dateOption = document.createElement("option");
-                dateOption.text = splittedDates[i];
-                dateOption.value = splittedDates[i];
-                selectDate.appendChild(dateOption);
+                dateOption.text = i;
+                dateOption.value = i;
+                selectYear.appendChild(dateOption);
             }
-            if (fileDate == null) {
-                getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml");
-                saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
-                selectDate.options[0].selected = true;
-            }
-            else {
-                var tmpIndex=0;
-                for (var i = 0; i < selectDate.length; i++) {
-                    var tmpFileData = "20" + fileDate.substring(5, 7) + "-" + fileDate.substring(7, 9) + "-" + fileDate.substring(9, 11);
-                    if (selectDate[i].value == tmpFileData) {
-                        tmpIndex = i;
+            getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt", true);
+            selectYear.onchange = function () {
+                console.log(selectYear.options[selectYear.selectedIndex].value);
+                if (selectYear.options[selectYear.selectedIndex].value == year) {
+                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt",true);
+                } else {
+                    //console.log("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt");
+                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt", true);
+                }
+            };
+        }
+
+    }
+    )
+
+    function getExchangeDates(url, flag) {
+       // loadDate();
+        //var url = "http://www.nbp.pl/kursy/xml/dir.txt";
+        var httpClient = new XMLHttpRequest();
+        httpClient.open('GET', url);
+        httpClient.onreadystatechange = function () {
+            var responseMessage = httpClient.responseText;
+            if (httpClient.readyState === 4) {
+                var splittedResponseMessage = responseMessage.split('\n');
+                var splittedDates = [], splittedFileNames = [];
+                var j = 0;
+                for (var i = 0; i < splittedResponseMessage.length; i++) {
+                    if (splittedResponseMessage[i].substring(0, 1) == 'a') {
+                        splittedDates[splittedDates.length] = "20" + splittedResponseMessage[i].substring(5, 7) + "-" + splittedResponseMessage[i].substring(7, 9) + "-" + splittedResponseMessage[i].substring(9, 11);
+                        splittedFileNames[splittedFileNames.length] = splittedResponseMessage[i];
                     }
                 }
-                selectDate.options[tmpIndex].selected = true;
-                getXMLData("http://www.nbp.pl/kursy/xml/" + fileDate + ".xml");
+                splittedFileNames.reverse();
+                splittedDates.reverse();
+
+                selectDate = document.getElementById("date-select");
+                selectDate.options.length = 0;
+                for (var i = 0; i < splittedDates.length; i++) {
+                    var dateOption = document.createElement("option");
+                    dateOption.text = splittedDates[i];
+                    dateOption.value = splittedDates[i];
+                    selectDate.appendChild(dateOption);
+                }
+                if (flag == true) {
+                    document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + splittedDates[selectDate.selectedIndex];
+                    getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml");
+                }
+                else {
+                    if (fileDate == null) {
+                        getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml");
+                        saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
+                        selectDate.options[0].selected = true;
+                    }
+                    else {
+                        var tmpIndex=0;
+                        for (var i = 0; i < selectDate.length; i++) {
+                            var tmpFileData = "20" + fileDate.substring(5, 7) + "-" + fileDate.substring(7, 9) + "-" + fileDate.substring(9, 11);
+                            if (selectDate[i].value == tmpFileData) {
+                                tmpIndex = i;
+                            }
+                        }
+                        selectDate.options[tmpIndex].selected = true;
+                        getXMLData("http://www.nbp.pl/kursy/xml/" + fileDate + ".xml");
+                    }
+                }
+
+                
+               
+                
+                selectDate.onchange = function () {
+                    document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + splittedDates[selectDate.selectedIndex];
+                    getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml")
+                    saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
+                };
+                
             }
-                
-            selectDate.onchange = function () {
-                getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml")
-                saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
-            };
-                
         }
+        httpClient.send();
     }
-    httpClient.send();
-    }
-    })
+    
 
 
     function  getXMLData (xmlURL) {
         document.getElementById("someDiv").style.visibility = "visible";
+        console.log(xmlURL);
         var httpRequest = new XMLHttpRequest();
         httpRequest.open("GET", xmlURL, false);
         httpRequest.send();
         var xmlData = httpRequest.responseXML;
         var currencies = xmlData.getElementsByTagName("pozycja");
         for (var i = 0; i < currencies.length; i++) {
-            currencyName[i] = currencies[i].getElementsByTagName("nazwa_waluty")[0].childNodes[0].nodeValue;
+            try{
+                currencyName[i] = currencies[i].getElementsByTagName("nazwa_waluty")[0].childNodes[0].nodeValue;
+            }catch(e){
+                currencyName[i] = currencies[i].getElementsByTagName("nazwa_kraju")[0].childNodes[0].nodeValue;
+            }
             converter[i] = currencies[i].getElementsByTagName("przelicznik")[0].childNodes[0].nodeValue;
             currencyCode[i] = currencies[i].getElementsByTagName("kod_waluty")[0].childNodes[0].nodeValue;
             averageRate[i] = currencies[i].getElementsByTagName("kurs_sredni")[0].childNodes[0].nodeValue;

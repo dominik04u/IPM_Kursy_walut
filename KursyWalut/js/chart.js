@@ -2,7 +2,7 @@
     'use strict';
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
-    var selectStartDate, selectEndDate;
+    var selectStartDate, selectEndDate, selectYear;
     var averageRates = [];
     var sourceData = [];
     var allDates = [];
@@ -24,13 +24,34 @@
         }
     };
 
+    function fillYearSelect() {
+        selectYear = document.getElementById("year-select");
+        var date = new Date();
+        var year = date.getFullYear();
+        for (var i = year; i >= 2002; i--) {
+            var dateOption = document.createElement("option");
+            dateOption.text = i;
+            dateOption.value = i;
+            selectYear.appendChild(dateOption);
+        }
+        selectYear.onchange = function () {
+            console.log(selectYear.options[selectYear.selectedIndex].value);
+            if (selectYear.options[selectYear.selectedIndex].value == year) {
+                loadData("http://www.nbp.pl/kursy/xml/dir.txt");
+            } else {
+                //console.log("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt");
+                loadData("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt");
+            }
+        };
+    }
+
     var currencyCode;
     var splittedDates = [], splittedFileNames = [];
 
-    function loadData() {
+    function loadData(url) {
         currencyCode = getUrlParameter('currencyCode');
         console.log(currencyCode);
-        var url = "http://www.nbp.pl/kursy/xml/dir.txt";
+       // var url = "http://www.nbp.pl/kursy/xml/dir.txt";
         var httpClient = new XMLHttpRequest();
         httpClient.open('GET', url);
         httpClient.onreadystatechange = function () {
@@ -111,6 +132,7 @@
     }
 
     window.onload = function () {
+        fillYearSelect();
         document.getElementById("progressDiv").style.visibility = "hidden";
         loadData();
         document.getElementById("showButton").onclick = function () { getDates() };
