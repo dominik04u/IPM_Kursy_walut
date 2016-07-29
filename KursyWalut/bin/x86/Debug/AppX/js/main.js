@@ -14,7 +14,7 @@
     WinJS.UI.Pages.define("index.html", {
         ready: function (element, options) {
             this.fillYearSelect();
-            //this.getExchangeDates();
+            
         },
 
         fillYearSelect: function () {
@@ -27,14 +27,14 @@
                 dateOption.value = i;
                 selectYear.appendChild(dateOption);
             }
-            getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt", true);
+            getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt");
             selectYear.onchange = function () {
                 console.log(selectYear.options[selectYear.selectedIndex].value);
                 if (selectYear.options[selectYear.selectedIndex].value == year) {
-                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt",true);
+                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir.txt");
                 } else {
                     //console.log("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt");
-                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt", true);
+                    getExchangeDates("http://www.nbp.pl/kursy/xml/dir" + selectYear.options[selectYear.selectedIndex].value + ".txt");
                 }
             };
         }
@@ -42,9 +42,7 @@
     }
     )
 
-    function getExchangeDates(url, flag) {
-       // loadDate();
-        //var url = "http://www.nbp.pl/kursy/xml/dir.txt";
+    function getExchangeDates(url) {
         var httpClient = new XMLHttpRequest();
         httpClient.open('GET', url);
         httpClient.onreadystatechange = function () {
@@ -70,62 +68,71 @@
                     dateOption.value = splittedDates[i];
                     selectDate.appendChild(dateOption);
                 }
-                if (flag == true) {
-                    document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + splittedDates[selectDate.selectedIndex];
-                    getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml");
-                }
-                else {
+
+                loadDate().then(function (data) {
+                    fileDate = data;
                     if (fileDate == null) {
+                        document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + splittedDates[selectDate.selectedIndex];
                         getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml");
                         saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
                         selectDate.options[0].selected = true;
                     }
                     else {
-                        var tmpIndex=0;
-                        for (var i = 0; i < selectDate.length; i++) {
-                            var tmpFileData = "20" + fileDate.substring(5, 7) + "-" + fileDate.substring(7, 9) + "-" + fileDate.substring(9, 11);
-                            if (selectDate[i].value == tmpFileData) {
-                                tmpIndex = i;
-                            }
-                        }
-                        selectDate.options[tmpIndex].selected = true;
+                        //tmpFileData;
+                        //var tmpIndex = 0;
+                        //for (var i = 0; i < selectDate.length; i++) {
+                        //    var tmpFileData = "20" + fileDate.substring(5, 7) + "-" + fileDate.substring(7, 9) + "-" + fileDate.substring(9, 11);
+                        //    if (selectDate[i].value == tmpFileData) {
+                        //        tmpIndex = i;
+                        //    }
+                        //}
+                        document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + "20" + fileDate.substring(5, 7) + "-" + fileDate.substring(7, 9) + "-" + fileDate.substring(9, 11);
+                        //selectDate.options[tmpIndex].selected = true;
                         getXMLData("http://www.nbp.pl/kursy/xml/" + fileDate + ".xml");
+                        saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
                     }
-                }
+                });
+        
+                
 
-                
-               
-                
                 selectDate.onchange = function () {
                     document.getElementById("p-info").innerHTML = "Na podstawie danych NBP z dnia: " + splittedDates[selectDate.selectedIndex];
                     getXMLData("http://www.nbp.pl/kursy/xml/" + splittedFileNames[selectDate.selectedIndex].substring(0, 11) + ".xml")
                     saveDate(splittedFileNames[selectDate.selectedIndex].substring(0, 11));
                 };
-                
+
             }
         }
         httpClient.send();
     }
-    
 
 
-    function  getXMLData (xmlURL) {
+
+    function getXMLData(xmlURL) {
         document.getElementById("someDiv").style.visibility = "visible";
         console.log(xmlURL);
         var httpRequest = new XMLHttpRequest();
         httpRequest.open("GET", xmlURL, false);
         httpRequest.send();
-        var xmlData = httpRequest.responseXML;
-        var currencies = xmlData.getElementsByTagName("pozycja");
-        for (var i = 0; i < currencies.length; i++) {
-            try{
-                currencyName[i] = currencies[i].getElementsByTagName("nazwa_waluty")[0].childNodes[0].nodeValue;
-            }catch(e){
-                currencyName[i] = currencies[i].getElementsByTagName("nazwa_kraju")[0].childNodes[0].nodeValue;
+        try{
+            var xmlData = httpRequest.responseXML;
+            var currencies = xmlData.getElementsByTagName("pozycja");
+            for (var i = 0; i < currencies.length; i++) {
+                try {
+                    currencyName[i] = currencies[i].getElementsByTagName("nazwa_waluty")[0].childNodes[0].nodeValue;
+                } catch (e) {
+                    currencyName[i] = currencies[i].getElementsByTagName("nazwa_kraju")[0].childNodes[0].nodeValue;
+                }
+                finally {
+                    converter[i] = currencies[i].getElementsByTagName("przelicznik")[0].childNodes[0].nodeValue;
+                    currencyCode[i] = currencies[i].getElementsByTagName("kod_waluty")[0].childNodes[0].nodeValue;
+                    averageRate[i] = currencies[i].getElementsByTagName("kurs_sredni")[0].childNodes[0].nodeValue;
+                }
             }
-            converter[i] = currencies[i].getElementsByTagName("przelicznik")[0].childNodes[0].nodeValue;
-            currencyCode[i] = currencies[i].getElementsByTagName("kod_waluty")[0].childNodes[0].nodeValue;
-            averageRate[i] = currencies[i].getElementsByTagName("kurs_sredni")[0].childNodes[0].nodeValue;
+        } catch (exception) {
+            var msgBox = new Windows.UI.Popups.MessageDialog("Błędny adres pliku do odczytu");
+            msgBox.showAsync();
+
         }
         return new WinJS.Promise.timeout(1000).then(function () {
             fillTable();
@@ -162,15 +169,34 @@
         });
     }
 
+    //function loadDate() {
+    //      localFolder.getFileAsync(filename).then(function (file) {
+    //          Windows.Storage.FileIO.readTextAsync(file).done(function (fileContent) {
+    //              console.log("fileContent " + fileContent);
+    //              return fileContent;
+    //        },
+    //        function (error) {
+    //            console.log("Błąd odczytu");
+    //        });
+    //    },
+    //    function (error) {
+    //        console.log("Nie znaleziono pliku");
+    //    });
+    //    //fileDate = "a073z160415";
+    //}
+
     function loadDate() {
-        return WinJS.Application.local.exists(filename).then(function (found) {
-            if (found) {
-                return localFolder.getFileAsync(filename).then(function (file) {
-                    return Windows.Storage.FileIO.readTextAsync(file).then(function (fileContent) {
-                        fileDate = fileContent;
-                    });
-                });
-                }
+        var that = this;
+        return Windows.Storage.ApplicationData.current.localFolder.getFileAsync(filename).then(function (file) {
+            return Windows.Storage.FileIO.readTextAsync(file).then(function (fileContent) {
+                return fileContent;
+            },
+            function (error) {
+                console.log("Błąd odczytu");
+            });
+        },
+        function (error) {
+            console.log("Nie znaleziono pliku");
         });
     }
 
@@ -195,24 +221,24 @@
         }
     }
 
-//    app.onactivated = function (args) {
-//        if (args.detail.kind === activation.ActivationKind.launch) {
-//            if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
-//                // TODO: This application has been newly launched. Initialize your application here.
-//            } else {
-//                // TODO: This application has been reactivated from suspension.
-//                // Restore application state here.
-//            }
-//            args.setPromise(WinJS.UI.processAll().then(function () {
-//                // TODO: Your code here.
-//               // getExchangeDates();
-//            }));
-//        }
-//    };
-//    app.oncheckpoint = function (args) {
-//        // TODO: This application is about to be suspended. Save any state that needs to persist across suspensions here.
-//        // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
-//        // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
-//    };
-//    app.start();
+    //    app.onactivated = function (args) {
+    //        if (args.detail.kind === activation.ActivationKind.launch) {
+    //            if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
+    //                // TODO: This application has been newly launched. Initialize your application here.
+    //            } else {
+    //                // TODO: This application has been reactivated from suspension.
+    //                // Restore application state here.
+    //            }
+    //            args.setPromise(WinJS.UI.processAll().then(function () {
+    //                // TODO: Your code here.
+    //               // getExchangeDates();
+    //            }));
+    //        }
+    //    };
+    //    app.oncheckpoint = function (args) {
+    //        // TODO: This application is about to be suspended. Save any state that needs to persist across suspensions here.
+    //        // You might use the WinJS.Application.sessionState object, which is automatically saved and restored across suspension.
+    //        // If you need to complete an asynchronous operation before your application is suspended, call args.setPromise().
+    //    };
+    //    app.start();
 }());

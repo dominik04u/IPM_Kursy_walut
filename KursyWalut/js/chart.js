@@ -34,6 +34,7 @@
             dateOption.value = i;
             selectYear.appendChild(dateOption);
         }
+        loadData("http://www.nbp.pl/kursy/xml/dir.txt");
         selectYear.onchange = function () {
             console.log(selectYear.options[selectYear.selectedIndex].value);
             if (selectYear.options[selectYear.selectedIndex].value == year) {
@@ -68,6 +69,7 @@
                 splittedDates.reverse();
 
                 selectStartDate = document.getElementById("start_date");
+                selectStartDate.options.length = 0;
                 for (var i = 0; i < splittedDates.length; i++) {
                     var dateOption = document.createElement("option");
                     dateOption.text = splittedDates[i];
@@ -76,6 +78,7 @@
                 }
 
                 selectEndDate = document.getElementById("end_date");
+                selectEndDate.options.length = 0;
                 for (var i = 0; i < splittedDates.length; i++) {
                     var dateOption = document.createElement("option");
                     dateOption.text = splittedDates[i];

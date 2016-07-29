@@ -94,11 +94,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\chart.js">
       <PackagePath>js\chart.js</PackagePath>
-      <Modified>2016-07-21T10:03:03.787</Modified>
+      <Modified>2016-07-21T11:18:14.307</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\js\main.js">
       <PackagePath>js\main.js</PackagePath>
-      <Modified>2016-07-21T08:37:32.774</Modified>
+      <Modified>2016-07-29T07:11:07.409</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Dominik\documents\visual studio 2015\Projects\KursyWalut\KursyWalut\lib\winjs-4.0.1\js\base.js">
       <PackagePath>lib\winjs-4.0.1\js\base.js</PackagePath>
